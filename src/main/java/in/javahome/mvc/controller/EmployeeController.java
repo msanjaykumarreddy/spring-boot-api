@@ -37,9 +37,9 @@ public class EmployeeController {
 		empDao.save(emp);
 	}
 	
-	@GetMapping(path = "/employee")
+	@GetMapping(path = "/employee/{id}")
 	@CrossOrigin
-	public Employee getEmployee(@RequestParam(name = "id") Integer id) {
+	public Employee getEmployee(@PathVariable Integer id) {
 		return empDao.findById(id).get();
 	}
 	@GetMapping(path = "/employees")
