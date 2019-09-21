@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import in.javahome.mvc.dao.IEmployeeDao;
 import in.javahome.mvc.pojo.Employee;
 
@@ -24,21 +24,25 @@ public class EmployeeController {
 	private IEmployeeDao empDao;
 
 	@RequestMapping(path = "/welcome", method = RequestMethod.GET)
+        @CrossOrigin
 	public String welcome() {
 		return "Welcome to sprint boot RESTFule Api !!!!";
 	}
 	
 	@RequestMapping(path="/employee", method = RequestMethod.POST)
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@CrossOrigin
 	public void addEmployee(@RequestBody Employee emp) {
 		empDao.save(emp);
 	}
 	
 	@GetMapping(path = "/employee")
+	@CrossOrigin
 	public Employee getEmployee(@RequestParam(name = "id") Integer id) {
 		return empDao.findById(id).get();
 	}
 	@GetMapping(path = "/employees")
+	@CrossOrigin
 	public List<Employee> getAllEmployees(){
 		List<Employee> employees = new ArrayList<>();
 		empDao.findAll().forEach(employees::add);
@@ -46,6 +50,7 @@ public class EmployeeController {
 	}
 	@GetMapping(path = "/employee/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
+	@CrossOrigin
 	public void deleteEmployee(@PathVariable Integer id){
 		empDao.deleteById(id);
 	}

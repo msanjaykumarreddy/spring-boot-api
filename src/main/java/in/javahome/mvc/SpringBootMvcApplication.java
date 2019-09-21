@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 @SpringBootApplication
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin
 public class SpringBootMvcApplication {
 
 	public static void main(String[] args) {
